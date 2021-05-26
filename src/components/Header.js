@@ -1,12 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export default function Header() {
+export default function Header({title, searchBar}) {
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
                 {/* eslint-disable-next-line */}
-                    <a className="navbar-brand" href="#">ToDo List</a>
+                    <a className="navbar-brand" href="#">{title}</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                     </button>
@@ -21,13 +22,24 @@ export default function Header() {
                                 <a className="nav-link" href="#">About</a>
                             </li>
                         </ul>
-                        <form className="d-flex">
+                         {searchBar ? <form className="d-flex">
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                             <button className="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                        </form> : "" 
+                        }
                     </div>
                 </div>
             </nav>
         </div>
     )
+}
+
+Header.defaultProps = {
+    title: "Your Title Here",
+    searchBar: true,
+}
+
+Header.propTypes = {
+    title: PropTypes.string,
+    searchBar: PropTypes.bool.isRequired,
 }
